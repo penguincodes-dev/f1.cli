@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+
+
+import requests
+import time
+from datetime import datetime
+import os
+import textwrap
+
+from dStandings import dStandings
+from tStandings import tStandings
+from tChart import tChart
+from dChart import dChart
+from lastRace import lastRace
+from nextRace import nextRace
+from driverIds import driverIds
+from teamIds import teamIds
+from dInfo import dInfo
+from tInfo import tInfo
+from helpFunc import helpFunc
+
+try:
+    time = datetime.now()
+    year = time.year
+
+    print("""
+         ______________  ___
+        /  ___________/ /  /
+       /  / _________  /  /
+      /  / /  ______/ /  /
+     /__/ /__/       /__/
+
+    F1 command-line interface
+    
+    help - to reveal the commands""")
+    print()
+
+    def getData(specURL):
+        try:
+            baseURL = "https://api.jolpi.ca/ergast/f1"
+            targetURL = baseURL + str(specURL)
+
+            response = requests.get(targetURL)
+            response.raise_for_status()
+
+            data = response.json()
+            data = data["MRData"]
+
+            return data
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+
+    while True:
+        user_input = input("f1 > ")
+
+        parts = user_input.split();
+
+        match parts[0]:
+            case "dStandings":
+               dStandings(getData, year)
+
+            case "tStandings":
+              tStandings(getData, year)
+            
+            case "tChart":
+                tChart(getData, year)
+
+            case "dChart":
+               dChart(getData, year)
+
+            case "lastRace":
+                lastRace(getData)
+
+            case "nextRace":
+                nextRace(getData)
+
+            case "driverIds":
+                driverIds(getData, year)
+
+            case "teamIds":
+                teamIds(getData, year)
+
+            case "dInfo":
+                driverId = parts[1]
+                dInfo(getData, driverId)
+
+            case "tInfo":        
+                teamId = parts[1]
+                tInfo(getData, teamId)
+
+            case "help":
+                 helpFunc()
+
+            case "exit":
+                print("Exiting the program")
+                break
+            case "clear":
+                os.system("cls" if os.name == "nt" else "clear")
+                print("""
+         ______________  ___
+        /  ___________/ /  /
+       /  / _________  /  /
+      /  / /  ______/ /  /
+     /__/ /__/       /__/
+
+    F1 command-line interface
+    
+    help - to reveal the commands""")
+                print()
+            case _:
+                print("   Unknown commmand\n\n   help - to see all commands\n ")
+
+
+except KeyboardInterrupt:
+    print("\nExiting the program")
