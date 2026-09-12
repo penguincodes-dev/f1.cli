@@ -46,9 +46,9 @@ def lastRace (getData):
         else:
             if driver["status"] == "Finished" or driver["status"] == "Lapped":
                 if (int(driver["laps"]) + 1) == max_laps:
-                    time = f"+{int(max_laps) - int(driver["laps"])} lap"
+                    time = f"+{int(max_laps) - int(driver['laps'])} lap"
                 else:
-                    time = f"+{int(max_laps) - int(driver["laps"])} laps"
+                    time = f"+{int(max_laps) - int(driver['laps'])} laps"
             else:
                 time = "DNF"
 
