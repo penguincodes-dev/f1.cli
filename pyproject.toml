@@ -1,0 +1,16 @@
+[project]
+name = "f1-cli"
+version = "1.0.0"
+description = "A command-line interface for Formula 1 information"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = [
+    "requests"
+]
+
+[project.scripts]
+f1cli = "f1cli:main"
+
+[tool.setuptools.packages.find]
+include = ["f1cli*"]

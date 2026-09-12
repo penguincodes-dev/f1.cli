@@ -1,7 +1,7 @@
 
 import time
 from datetime import datetime
-from wiki import wiki
+from .wiki import wiki
 
 def tInfo(getData, teamId):
     try:

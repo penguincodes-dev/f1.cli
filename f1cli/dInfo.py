@@ -1,6 +1,6 @@
 
 import time
-from wiki import wiki 
+from .wiki import wiki 
 from datetime import datetime
 
 def dInfo(getData, driverId):
