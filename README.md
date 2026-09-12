@@ -12,9 +12,49 @@ A simple command-line interface for quickly viewing Formula 1 championship stand
 * View Wikipedia descriptions for drivers and teams
 * Browse available driver and team IDs
 
+## Installation
+
+### Requirements
+
+* Python 3.10 or newer
+* pipx
+* Internet connection
+
+### Install with pipx
+
+`pipx` installs the CLI in an isolated Python environment while making the command available globally.
+
+#### Arch Linux
+
+```bash
+sudo pacman -S python-pipx
+pipx ensurepath
+```
+
+Restart your terminal after running `pipx ensurepath`.
+
+#### Clone the repository
+
+```bash
+git clone https://github.com/penguincodes-dev/f1.cli.git
+cd f1.cli
+```
+
+#### Install the CLI
+
+```bash
+pipx install .
+```
+
+After installation, the `f1cli` command will be available globally.
+
 ## Usage
 
-Start the CLI and use one of the available commands:
+Start the CLI with:
+
+```bash
+f1cli
+```
 
 ### Championship
 
@@ -51,6 +91,21 @@ For `dInfo` and `tInfo`, use `driverIds` or `teamIds` first to find the required
 | `clear`  | Clear the terminal |
 | `exit`   | Exit the F1 CLI    |
 | `Ctrl+C` | Exit the F1 CLI    |
+
+## Updating
+
+Pull the latest changes and reinstall the package:
+
+```bash
+git pull
+pipx install . --force
+```
+
+## Uninstall
+
+```bash
+pipx uninstall f1-cli
+```
 
 ## License
 
